@@ -11,8 +11,9 @@ uint64_t factorial(unsigned int n) { // Вычисление факториал�
     } else {
         uint64_t result = 1;
         for (unsigned int i = 2; i <= n; ++i) {
+            // Проверка на переполнение
             if (result > UINT64_MAX / i) {
-                printf("Overflow occurred during factorial calculation\n");
+                printf("Overflow occurred during factorial calculation\n"); // Произошло переполнение во время вычисления факториала
                 exit(EXIT_FAILURE);
             }
             result *= i;
@@ -31,7 +32,7 @@ uint64_t fibonacci(unsigned int n) { // Вычисление фибоначчи
         for (unsigned int i = 2; i <= n; ++i) {
             // Проверка на переполнение
             if (b > UINT64_MAX - a) {
-                printf("Overflow occurred during Fibonacci calculation\n");
+                printf("Overflow occurred during Fibonacci calculation\n"); // Произошло переполнение во время вычисления числа Фибоначчи
                 exit(EXIT_FAILURE);
             }
             temp = b;
@@ -42,7 +43,7 @@ uint64_t fibonacci(unsigned int n) { // Вычисление фибоначчи
     }
 }
 
-void printProcessInfo(const char *label) {
+void printProcessInfo(const char *label) { // Функция для вывода доп информации о процессе (на 10 баллов)
     printf("[%s] Process ID: %d, Parent ID: %d\n", label, getpid(), getppid());
 }
 
@@ -101,7 +102,7 @@ int main(int argc, char *argv[]) {
 
             printf("Directory info process finished.\n");
         } else {
-            // Процесс-родитель ждет завершения процесса вывода информации о каталоге
+            // Процесс-родитель ждет завершения процесса вывода информации о каталоге, где расположен файл
             wait(nullptr);
             printf("All processes finished.\n");
         }
